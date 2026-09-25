@@ -1,29 +1,40 @@
-# Implication truth table
+# Import logical operators
+from logic import logical_not
+from logic import logical_and
+from logic import logical_or
 from logic import implies
-
-def implication_truth_table():
-
-    values = [True, False]
-
-    print(f"{'A':<7}{'B':<7}{'A → B':<7}")
-
-    for a in values:
-        for b in values:
-            print(f"{str(a):<7}{str(b):<7}{str(implies(a,b)):<7}")
-
-implication_truth_table()
-
-# Biconditional truth table
 from logic import iff
 
-def biconditional_truth_table():
 
+def not_a_truth_table():
+    # handles unary operation NOT
+    
     values = [True, False]
 
-    print(f"{'A':<7}{'B':<7}{'A → B':<7}")
+    print(f"{'A':<7}{'not A':<7}")
+    for a in values:
+        print(f"{str(a):<7}{str(logical_not(a)):<7}")
+
+    print()
+
+
+def truth_table(operation, heading):
+    # handles binary operations like AND, OR, →, ↔
     
+    values = [True, False]
+
+    print(f"{'A':<7}{'B':<7}{heading:<7}")
+
     for a in values:
         for b in values:
-            print(f"{str(a):<7}{str(b):<7}{str(iff(a,b)):<7}")
+            print(f"{str(a):<7}{str(b):<7}{str(operation(a,b)):<7}")
 
-biconditional_truth_table()
+    print()
+
+
+#Print truth tables
+not_a_truth_table()
+truth_table(logical_and, "A ∧ B")
+truth_table(logical_or, "A ∨ B")
+truth_table(implies, "A → B")
+truth_table(iff, "A ↔ B")
